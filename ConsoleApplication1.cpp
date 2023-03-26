@@ -18,12 +18,40 @@ int main()
         << endl;
 
     Calculator c;
+    int start = 1;
     while (true)
     {
-        cin >> x >> oper >> y;
-        result = c.Calculate(x, oper, y);
-        cout << "Result " << "of " << x << oper << y << " is: " << result << endl;
 
+        bool cont = true;
+        if (start > 1) {
+            char res = 'y';
+            cout << "do you still want to calculate , please enter y/n : ";
+            cin >> res;
+            if (res == 'y')
+                cont = true;
+            else
+                cont = false;
+        }
+        start = start + 1;
+        if (cont)
+        {
+            cin >> x >> oper >> y;
+            if (oper == '/' && y == 0)
+            {
+                cout << "Attempted to divide by zero!" << endl;
+                continue;
+            }
+            else
+            {
+                result = c.Calculate(x, oper, y);
+            }
+            cout << "Result " << "of " << x << oper << y << " is: " << result << endl;
+        }
+        else {
+            cout << "Thank you";
+            break;
+        }
+        
     }
 
     return 0;
